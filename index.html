@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Білім беру робототехникасы | Интеллектуалды оқу құралы</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Particle background canvas -->
+    <canvas id="particles"></canvas>
+
+    <!-- 3D Sci-Fi Scene Layers -->
+    <div class="scene-3d" aria-hidden="true">
+        <div class="grid-floor"></div>
+        <div class="horizon-glow"></div>
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="nebula nebula-3"></div>
+        <div class="star-field" id="starField"></div>
+        <div class="floating-poly p1"></div>
+        <div class="floating-poly p2"></div>
+        <div class="floating-poly p3"></div>
+        <div class="floating-poly p4"></div>
+        <div class="scan-line"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">
+            <div class="logo-icon"><i class="fas fa-robot"></i></div>
+            <span>EduRobot<span class="accent">KZ</span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link active" data-section="home">Басты</a></li>
+            <li><a href="#theory" class="nav-link" data-section="theory">Теория</a></li>
+            <li><a href="#practice" class="nav-link" data-section="practice">Практика</a></li>
+            <li><a href="#quiz" class="nav-link" data-section="quiz">Тест</a></li>
+            <li><a href="#assistant" class="nav-link" data-section="assistant">ЖИ Көмекші</a></li>
+            <li><a href="#results" class="nav-link" data-section="results">Нәтиже</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+    </nav>
+
+    <!-- ========== 1. БАСТЫ БЕТ ========== -->
+    <section id="home" class="section active">
+        <div class="hero">
+            <div class="hero-content">
+                <div class="glitch-wrapper">
+                    <h1 class="glitch" data-text="БІЛІМ БЕРУ РОБОТОТЕХНИКАСЫ">БІЛІМ БЕРУ РОБОТОТЕХНИКАСЫ</h1>
+                </div>
+                <p class="hero-subtitle">Интеллектуалды электронды оқу құралы</p>
+                <div class="hero-desc">
+                    <p>Робототехниканы меңгеру арқылы болашақ инженерлерді дайындайтын заманауи цифрлық платформа. Python, Arduino, сенсорлар және алгоритмдер — бір жерде.</p>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-num" data-target="6">0</div>
+                        <div class="stat-label">Модуль</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num" data-target="3">0</div>
+                        <div class="stat-label">Теория тақырыбы</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num" data-target="10">0</div>
+                        <div class="stat-label">Тест сұрағы</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num" data-target="100">0</div>
+                        <div class="stat-label">% Интерактивті</div>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="navigateTo('theory')">
+                        <i class="fas fa-play"></i> Оқуды бастау
+                    </button>
+                    <button class="btn btn-outline" onclick="navigateTo('assistant')">
+                        <i class="fas fa-comments"></i> ЖИ Көмекшіге сұрау
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="robot-container">
+                    <div class="robot">
+                        <div class="robot-head">
+                            <div class="eye left"></div>
+                            <div class="eye right"></div>
+                            <div class="antenna"></div>
+                        </div>
+                        <div class="robot-body">
+                            <div class="chest-light"></div>
+                        </div>
+                        <div class="robot-arm left"></div>
+                        <div class="robot-arm right"></div>
+                    </div>
+                    <div class="orbit orbit-1"></div>
+                    <div class="orbit orbit-2"></div>
+                    <div class="orbit orbit-3"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <div class="section-header">
+                <span class="section-tag">01 / МАҚСАТ</span>
+                <h2>Оқу құралының мақсаты</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>STEM дағдыларын дамыту</h3>
+                    <p>Ғылым, технология, инженерия және математиканы робототехника арқылы практикалық түрде үйрету.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon"><i class="fas fa-code"></i></div>
+                    <h3>Python бағдарламалау</h3>
+                    <p>Роботтарды басқару үшін Python тілін меңгеру, алгоритмдер құру және жобалар жасау.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3>Креативті ойлау</h3>
+                    <p>Нақты мәселелерді шешу арқылы сыни және шығармашылық ойлау қабілетін дамыту.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon"><i class="fas fa-users"></i></div>
+                    <h3>Командалық жұмыс</h3>
+                    <p>Топтық жобалар арқылы ынтымақтастық және коммуникация дағдыларын қалыптастыру.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="author-section">
+            <div class="author-card">
+                <div class="author-avatar"><i class="fas fa-user-astronaut"></i></div>
+                <div class="author-info">
+                    <h3>Автор туралы</h3>
+                    <p class="author-name">Практикалық тапсырма • 13-апта</p>
+                    <p>Бұл интеллектуалды электронды оқу құралы «Өз пәнің бойынша интеллектуалды электронды оқу құралын жаса!» тапсырмасы аясында әзірленді. Тақырып: <strong>Білім беру робототехникасы</strong>.</p>
+                    <div class="tech-stack">
+                        <span><i class="fab fa-html5"></i> HTML5</span>
+                        <span><i class="fab fa-css3-alt"></i> CSS3</span>
+                        <span><i class="fab fa-js"></i> JavaScript</span>
+                        <span><i class="fab fa-python"></i> Python</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 2. ТЕОРИЯЛЫҚ МАТЕРИАЛ ========== -->
+    <section id="theory" class="section">
+        <div class="section-header">
+            <span class="section-tag">02 / ТЕОРИЯ</span>
+            <h2>Теориялық материал</h2>
+            <p class="section-desc">Робототехниканың негіздері, құрылғылары және Python арқылы бағдарламалау</p>
+        </div>
+
+        <div class="theory-tabs">
+            <button class="tab-btn active" data-tab="topic1">1. Кіріспе</button>
+            <button class="tab-btn" data-tab="topic2">2. Құрылғылар</button>
+            <button class="tab-btn" data-tab="topic3">3. Python & Роботтар</button>
+            <button class="tab-btn" data-tab="topic4">4. Педагогика</button>
+        </div>
+
+        <div class="theory-content">
+            <!-- Topic 1 -->
+            <div class="tab-pane active" id="topic1">
+                <div class="theory-card">
+                    <div class="theory-visual">
+                        <div class="infographic">
+                            <div class="info-node main"><i class="fas fa-robot"></i><span>Робототехника</span></div>
+                            <div class="info-node n1"><i class="fas fa-cogs"></i><span>Механика</span></div>
+                            <div class="info-node n2"><i class="fas fa-microchip"></i><span>Электроника</span></div>
+                            <div class="info-node n3"><i class="fas fa-brain"></i><span>ЖИ</span></div>
+                            <div class="info-node n4"><i class="fas fa-code"></i><span>Бағдарламалау</span></div>
+                        </div>
+                    </div>
+                    <div class="theory-text">
+                        <h3>Білім беру робототехникасы дегеніміз не?</h3>
+                        <p><strong>Білім беру робототехникасы</strong> — оқушыларға роботтарды құрастыру, бағдарламалау және басқару арқылы STEM пәндерін оқытудың заманауи әдісі. Ол теорияны практикамен байланыстырады.</p>
+                        
+                        <h4>Неге маңызды?</h4>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> <strong>Практикалық оқыту:</strong> Оқушылар нақты жобалар жасайды</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Мотивация:</strong> Роботтар оқуға қызығушылықты арттырады</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Болашақ мамандықтар:</strong> Инженерия, ЖИ, автоматика салаларына дайындайды</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Проблема шешу:</strong> Күрделі тапсырмаларды алгоритмдік ойлау арқылы шешеді</li>
+                        </ul>
+
+                        <div class="code-highlight">
+                            <div class="code-header"><span>Негізгі ұғымдар</span></div>
+                            <div class="code-body">
+                                <span class="keyword">Робот</span> = Механика + Электроника + Бағдарламалау<br>
+                                <span class="keyword">Автономды</span> → Сенсорлар арқылы шешім қабылдайды<br>
+                                <span class="keyword">STEM</span> → Science + Technology + Engineering + Math
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Topic 2 -->
+            <div class="tab-pane" id="topic2">
+                <div class="theory-card">
+                    <div class="theory-text full">
+                        <h3>Роботтың негізгі құрылғылары</h3>
+                        <div class="hardware-grid">
+                            <div class="hw-card">
+                                <div class="hw-icon"><i class="fas fa-microchip"></i></div>
+                                <h4>Микроконтроллер</h4>
+                                <p>Arduino, ESP32, Raspberry Pi — роботтың «миы». Бағдарламаны орындайды.</p>
+                                <span class="hw-tag">Python / C++</span>
+                            </div>
+                            <div class="hw-card">
+                                <div class="hw-icon"><i class="fas fa-eye"></i></div>
+                                <h4>Сенсорлар</h4>
+                                <p>Ультрадыбыстық, инфрақызыл, түс, температура, гироскоп — ортаны қабылдау.</p>
+                                <span class="hw-tag">Input</span>
+                            </div>
+                            <div class="hw-card">
+                                <div class="hw-icon"><i class="fas fa-cog"></i></div>
+                                <h4>Актуаторлар</h4>
+                                <p>Серво, DC мотор, степпер — қозғалыс пен әрекетті қамтамасыз етеді.</p>
+                                <span class="hw-tag">Output</span>
+                            </div>
+                            <div class="hw-card">
+                                <div class="hw-icon"><i class="fas fa-battery-full"></i></div>
+                                <h4>Қуат көзі</h4>
+                                <p>Батарея, аккумулятор, күн панелі — энергиямен қамтамасыз ету.</p>
+                                <span class="hw-tag">Power</span>
+                            </div>
+                        </div>
+
+                        <h4>Популярлы платформалар білім беруде</h4>
+                        <div class="platform-list">
+                            <div class="platform">
+                                <strong>LEGO Mindstorms / Spike</strong>
+                                <p>Бастауыш және орта сыныптар үшін идеал. Блокты бағдарламалау + Python.</p>
+                            </div>
+                            <div class="platform">
+                                <strong>Arduino + Python (pyFirmata / Firmata)</strong>
+                                <p>Орта және жоғары сыныптар. Нақты электроника мен кодты үйретеді.</p>
+                            </div>
+                            <div class="platform">
+                                <strong>micro:bit + Python</strong>
+                                <p>Жеңіл, арзан, Bluetooth бар. Бастауыш бағдарламалауға өте ыңғайлы.</p>
+                            </div>
+                            <div class="platform">
+                                <strong>Raspberry Pi</strong>
+                                <p>Толық Linux компьютері. Күрделі жобалар, компьютерлік көру, ЖИ.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Topic 3 -->
+            <div class="tab-pane" id="topic3">
+                <div class="theory-card">
+                    <div class="theory-text full">
+                        <h3>Python арқылы роботтарды бағдарламалау</h3>
+                        <p>Python — робототехникада ең танымал тілдердің бірі. Оның қарапайым синтаксисі мен бай кітапханалары бастауыштан кәсіби деңгейге дейін қолданылады.</p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fab fa-python"></i> Python • Arduino серво басқару (pyFirmata)</span>
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            </div>
+                            <pre><code>from pyfirmata import Arduino, util
+import time
+
+board = Arduino('COM3')  # Портты өзгертіңіз
+servo = board.get_pin('d:9:s')  # 9-пин, серво
+
+def wave():
+    for angle in range(0, 180, 5):
+        servo.write(angle)
+        time.sleep(0.05)
+    for angle in range(180, 0, -5):
+        servo.write(angle)
+        time.sleep(0.05)
+
+while True:
+    wave()
+    time.sleep(1)</code></pre>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span><i class="fab fa-python"></i> Python • Ультрадыбыстық сенсормен қашықтық</span>
+                                <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                            </div>
+                            <pre><code>import RPi.GPIO as GPIO
+import time
+
+TRIG = 23
+ECHO = 24
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(TRIG, GPIO.OUT)
+GPIO.setup(ECHO, GPIO.IN)
+
+def get_distance():
+    GPIO.output(TRIG, True)
+    time.sleep(0.00001)
+    GPIO.output(TRIG, False)
+
+    while GPIO.input(ECHO) == 0:
+        start = time.time()
+    while GPIO.input(ECHO) == 1:
+        end = time.time()
+
+    distance = (end - start) * 17150
+    return round(distance, 2)
+
+print("Қашықтық:", get_distance(), "см")</code></pre>
+                        </div>
+
+                        <h4>Негізгі Python кітапханалары робототехникада</h4>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> <code>pyfirmata</code> / <code>pyserial</code> — Arduino байланысы</li>
+                            <li><i class="fas fa-check-circle"></i> <code>RPi.GPIO</code> / <code>gpiozero</code> — Raspberry Pi</li>
+                            <li><i class="fas fa-check-circle"></i> <code>opencv-python</code> — компьютерлік көру</li>
+                            <li><i class="fas fa-check-circle"></i> <code>numpy</code> + <code>matplotlib</code> — деректерді талдау</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Topic 4 -->
+            <div class="tab-pane" id="topic4">
+                <div class="theory-card">
+                    <div class="theory-text full">
+                        <h3>Білім беруде робототехниканы қолдану әдістері</h3>
+                        <div class="method-grid">
+                            <div class="method-card">
+                                <span class="method-num">01</span>
+                                <h4>Жобалық оқыту (PBL)</h4>
+                                <p>Оқушылар нақты мәселені шешетін робот жобасын жасайды: «Көше тазалайтын робот», «Өрт сөндіруші робот» және т.б.</p>
+                            </div>
+                            <div class="method-card">
+                                <span class="method-num">02</span>
+                                <h4>Геймификация</h4>
+                                <p>Сайыстар, челендждер, деңгейлер мен бейдждер арқылы мотивацияны арттыру. Robotics Olympiad форматы.</p>
+                            </div>
+                            <div class="method-card">
+                                <span class="method-num">03</span>
+                                <h4>Төңкерілген сынып</h4>
+                                <p>Теорияны үйде бейне/оқу құралы арқылы оқиды, сабақта практикалық құрастыру мен кодтау жасайды.</p>
+                            </div>
+                            <div class="method-card">
+                                <span class="method-num">04</span>
+                                <h4>Коллаборативті оқыту</h4>
+                                <p>Топтарда рөлдер бөлінеді: конструктор, бағдарламашы, дизайнер, тестер.</p>
+                            </div>
+                        </div>
+
+                        <div class="callout">
+                            <i class="fas fa-lightbulb"></i>
+                            <div>
+                                <strong>Кеңес:</strong> Бастауыш сыныптарда блокты бағдарламалау (Scratch, LEGO), орта сыныптарда Python-ға көшу, жоғары сыныптарда Raspberry Pi + компьютерлік көру және ЖИ элементтерін енгізу ұсынылады.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 3. ПРАКТИКАЛЫҚ ТАПСЫРМАЛАР ========== -->
+    <section id="practice" class="section">
+        <div class="section-header">
+            <span class="section-tag">03 / ПРАКТИКА</span>
+            <h2>Практикалық тапсырмалар</h2>
+            <p class="section-desc">Python және робототехника бойынша 3 негізгі жаттығу</p>
+        </div>
+
+        <div class="practice-grid">
+            <div class="practice-card">
+                <div class="practice-header">
+                    <span class="practice-num">01</span>
+                    <span class="difficulty easy">Оңай</span>
+                </div>
+                <h3>Жеңіл қозғалыс роботы</h3>
+                <p>Arduino немесе micro:bit негізінде алға-артқа қозғалатын қарапайым робот құрастырыңыз және Python арқылы басқарңыз.</p>
+                <div class="practice-meta">
+                    <span><i class="fas fa-clock"></i> 45–60 мин</span>
+                    <span><i class="fas fa-tools"></i> 2 мотор + драйвер</span>
+                </div>
+                <div class="practice-tasks">
+                    <h4>Тапсырмалар:</h4>
+                    <ol>
+                        <li>Шассиді құрастыру (2 дөңгелек + 1 тірек)</li>
+                        <li>Мотор драйверін қосу (L298N немесе аналогы)</li>
+                        <li>Python-да <code>forward()</code>, <code>backward()</code>, <code>stop()</code> функцияларын жазу</li>
+                        <li>Циклде қозғалыс үлгісін жасау</li>
+                    </ol>
+                </div>
+                <button class="btn btn-sm" onclick="showSolution(1)">Шешімді көрсету</button>
+                <div class="solution" id="sol1" style="display:none;">
+                    <pre><code>from gpiozero import Robot
+from time import sleep
+
+robot = Robot(left=(4, 14), right=(17, 18))
+
+def forward(sec=2):
+    robot.forward()
+    sleep(sec)
+    robot.stop()
+
+def backward(sec=2):
+    robot.backward()
+    sleep(sec)
+    robot.stop()
+
+# Негізгі цикл
+while True:
+    forward(3)
+    sleep(0.5)
+    backward(2)
+    sleep(1)</code></pre>
+                </div>
+            </div>
+
+            <div class="practice-card">
+                <div class="practice-header">
+                    <span class="practice-num">02</span>
+                    <span class="difficulty medium">Орташа</span>
+                </div>
+                <h3>Кедергіні анықтайтын робот</h3>
+                <p>Ультрадыбыстық сенсор қосып, алдындағы кедергіні анықтап, бұрылатын робот жасаңыз.</p>
+                <div class="practice-meta">
+                    <span><i class="fas fa-clock"></i> 90 мин</span>
+                    <span><i class="fas fa-tools"></i> HC-SR04 + 2 мотор</span>
+                </div>
+                <div class="practice-tasks">
+                    <h4>Тапсырмалар:</h4>
+                    <ol>
+                        <li>HC-SR04 сенсорын қосу және қашықтықты өлшеу</li>
+                        <li>Егер қашықтық < 20 см болса — тоқтау</li>
+                        <li>Кездейсоқ бағытта бұрылу (солға/оңға)</li>
+                        <li>Логиканы циклге салу</li>
+                    </ol>
+                </div>
+                <button class="btn btn-sm" onclick="showSolution(2)">Шешімді көрсету</button>
+                <div class="solution" id="sol2" style="display:none;">
+                    <pre><code>from gpiozero import Robot, DistanceSensor
+from time import sleep
+import random
+
+robot = Robot(left=(4, 14), right=(17, 18))
+sensor = DistanceSensor(echo=24, trigger=23)
+
+while True:
+    dist = sensor.distance * 100  # см
+    print(f"Қашықтық: {dist:.1f} см")
+    
+    if dist < 20:
+        robot.stop()
+        sleep(0.3)
+        if random.choice([True, False]):
+            robot.left(0.5)
+        else:
+            robot.right(0.5)
+        sleep(0.8)
+        robot.stop()
+    else:
+        robot.forward(0.6)
+    sleep(0.1)</code></pre>
+                </div>
+            </div>
+
+            <div class="practice-card">
+                <div class="practice-header">
+                    <span class="practice-num">03</span>
+                    <span class="difficulty hard">Қиын</span>
+                </div>
+                <h3>Сызық бойымен жүретін робот</h3>
+                <p>IR сенсорлар арқылы қара сызықты анықтап, оны бойлай қозғалатын робот құрастырыңыз (Line Follower).</p>
+                <div class="practice-meta">
+                    <span><i class="fas fa-clock"></i> 2–3 сағат</span>
+                    <span><i class="fas fa-tools"></i> 2–3 IR сенсор</span>
+                </div>
+                <div class="practice-tasks">
+                    <h4>Тапсырмалар:</h4>
+                    <ol>
+                        <li>2 немесе 3 IR сенсорды шассиге орнату</li>
+                        <li>Сенсор мәндерін оқу (0/1 немесе аналог)</li>
+                        <li>PID немесе қарапайым if-else логикасын жазу</li>
+                        <li>Сызықтан шыққанда түзету алгоритмі</li>
+                    </ol>
+                </div>
+                <button class="btn btn-sm" onclick="showSolution(3)">Шешімді көрсету</button>
+                <div class="solution" id="sol3" style="display:none;">
+                    <pre><code>from gpiozero import Robot, LineSensor
+from time import sleep
+
+robot = Robot(left=(4, 14), right=(17, 18))
+left_sensor = LineSensor(27)
+right_sensor = LineSensor(22)
+
+while True:
+    left = left_sensor.value   # 0 = ақ, 1 = қара (түзетіңіз)
+    right = right_sensor.value
+
+    if left == 0 and right == 0:
+        robot.forward(0.5)
+    elif left == 1 and right == 0:
+        robot.left(0.4)      # солға түзету
+    elif left == 0 and right == 1:
+        robot.right(0.4)     # оңға түзету
+    else:
+        robot.stop()         # екі жағынан да қара
+    sleep(0.05)</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 4. ИНТЕЛЛЕКТУАЛДЫ ТЕСТ ========== -->
+    <section id="quiz" class="section">
+        <div class="section-header">
+            <span class="section-tag">04 / ТЕСТ</span>
+            <h2>Интеллектуалды тест</h2>
+            <p class="section-desc">10 сұрақ • Автоматты тексеру • Нәтижені есептеу</p>
+        </div>
+
+        <div class="quiz-container" id="quizContainer">
+            <div class="quiz-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-text" id="progressText">Сұрақ 1 / 10</span>
+            </div>
+
+            <div class="quiz-card" id="quizCard">
+                <!-- Questions injected by JS -->
+            </div>
+
+            <div class="quiz-nav">
+                <button class="btn btn-outline" id="prevBtn" disabled><i class="fas fa-arrow-left"></i> Алдыңғы</button>
+                <button class="btn btn-primary" id="nextBtn">Келесі <i class="fas fa-arrow-right"></i></button>
+                <button class="btn btn-success" id="submitBtn" style="display:none;">Нәтижені көру <i class="fas fa-check"></i></button>
+            </div>
+        </div>
+
+        <div class="quiz-result" id="quizResult" style="display:none;">
+            <!-- Result injected by JS -->
+        </div>
+    </section>
+
+    <!-- ========== 5. ЖИ КӨМЕКШІ ========== -->
+    <section id="assistant" class="section">
+        <div class="section-header">
+            <span class="section-tag">05 / ЖИ КӨМЕКШІ</span>
+            <h2>Виртуалды көмекші</h2>
+            <p class="section-desc">Робототехника бойынша сұрақтарыңызға жауап беретін интеллектуалды көмекші</p>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chat-avatar"><i class="fas fa-robot"></i></div>
+                <div>
+                    <strong>RoboMentor</strong>
+                    <span class="status online">Онлайн</span>
+                </div>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="msg-avatar"><i class="fas fa-robot"></i></div>
+                    <div class="msg-content">
+                        Сәлем! Мен RoboMentor — білім беру робототехникасы бойынша виртуалды көмекшімін. 
+                        Маған роботтар, Python, сенсорлар, Arduino немесе оқыту әдістері туралы сұраңыз!
+                        <div class="quick-replies">
+                            <button onclick="askQuick('Python дегеніміз не?')">Python дегеніміз не?</button>
+                            <button onclick="askQuick('Arduino қалай жұмыс істейді?')">Arduino қалай жұмыс істейді?</button>
+                            <button onclick="askQuick('Line follower қалай жасалады?')">Line follower қалай жасалады?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Сұрағыңызды жазыңыз..." autocomplete="off">
+                <button id="sendBtn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 6. БІЛІМДІ БАҒАЛАУ ========== -->
+    <section id="results" class="section">
+        <div class="section-header">
+            <span class="section-tag">06 / БАҒАЛАУ</span>
+            <h2>Білімді бағалау және талдау</h2>
+            <p class="section-desc">Тест нәтижесі, қателерді талдау және ұсыныстар</p>
+        </div>
+
+        <div class="results-placeholder" id="resultsPlaceholder">
+            <div class="placeholder-icon"><i class="fas fa-chart-pie"></i></div>
+            <h3>Әлі тест тапсырылмаған</h3>
+            <p>Нәтижені көру үшін алдымен «Тест» бөлімінде 10 сұраққа жауап беріңіз.</p>
+            <button class="btn btn-primary" onclick="navigateTo('quiz')">Тестке өту</button>
+        </div>
+
+        <div class="results-content" id="resultsContent" style="display:none;">
+            <!-- Filled by JS after quiz -->
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <i class="fas fa-robot"></i> EduRobotKZ
+            </div>
+            <p>Интеллектуалды электронды оқу құралы • Білім беру робототехникасы</p>
+            <p class="footer-note">Практикалық тапсырма • 13-апта • HTML • CSS • JavaScript • Python</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
